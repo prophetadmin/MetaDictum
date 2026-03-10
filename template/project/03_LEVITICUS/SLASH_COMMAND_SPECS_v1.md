@@ -1,0 +1,463 @@
+# SLASH COMMAND SPECS v1 - Deterministic Command Contracts
+
+## 1. Scope
+
+This document defines deterministic specifications for all slash commands in
+this framework.
+
+All command behavior must be mechanically defined, auditable, and independently
+executable under `03_LEVITICUS/RESUME_PROTOCOL_v1.md`.
+
+## 2. Structural Rules
+
+Each command is defined in its own numbered section.
+Command sections must follow the exact internal heading order defined in
+Section 5.
+No additional internal headings are permitted inside command blocks.
+No reordering of required headings is permitted.
+All rules must be mechanically verifiable.
+No qualitative completion language is permitted.
+
+## 3. Canonical Artifact and Path Rules
+
+All artifact references must use exact canonical filenames.
+Generic labels are prohibited.
+If an artifact does not yet exist, the command must reference the exact
+filename under which it will be created.
+
+All artifact paths are resolved relative to the canonical project root: the
+directory containing `01_GENESIS/`, `02_EXODUS/`, and `03_LEVITICUS/`.
+
+## 4. Registered Commands
+
+- /create_map
+- /seed
+- /status_sync
+- /resume
+- /resume_phase
+- /validate_phase
+- /summarize_session
+- /extract_canon
+
+No additional commands are permitted in v1.
+
+## 5. Required Internal Command Structure
+
+Each command section must contain these headings in this exact order:
+
+Command Name
+Purpose
+Required Inputs
+Optional Inputs
+Output Contract
+Guardrails
+Failure Modes
+Deterministic Advancement Rule
+
+## 6. /seed
+
+Command Name
+/seed
+
+Purpose
+Transform the primary Genesis idea artifact into `01_GENESIS/PROJECT_SEED.md`
+by applying `03_LEVITICUS/GENESIS_SEED_PROMPT_v1.md`.
+
+Required Inputs
+`01_GENESIS/IDEA.md`
+`03_LEVITICUS/GENESIS_SEED_PROMPT_v1.md`
+`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/seed.md`
+
+Optional Inputs
+Project title override
+
+Output Contract
+Output must be written only to `01_GENESIS/PROJECT_SEED.md` in overwrite-only
+mode.
+Output must conform exactly to the structure required by
+`03_LEVITICUS/GENESIS_SEED_PROMPT_v1.md`.
+No commentary is permitted outside the required seed content.
+
+Guardrails
+Must derive seed content only from the selected Genesis idea artifact.
+Must not emit roadmap phases, slash commands, resume logic, or execution
+sequencing.
+Must halt if no Genesis idea artifact exists.
+Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+
+Failure Modes
+Missing required input artifact.
+Seed output violates required structure.
+Roadmap or execution content leaked into seed.
+Output path or filename mismatch.
+
+Deterministic Advancement Rule
+`/seed` is complete only when a compliant `01_GENESIS/PROJECT_SEED.md` is
+emitted from `01_GENESIS/IDEA.md` with no other project artifact modified.
+
+## 7. /create_map
+
+Command Name
+/create_map
+
+Purpose
+Transform `01_GENESIS/PROJECT_SEED.md` into
+`03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md` by applying
+`03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v1.md` and enforcing
+`03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.
+
+Required Inputs
+`01_GENESIS/PROJECT_SEED.md`
+`03_LEVITICUS/ROADMAP_SCHEMA_v1.md`
+`03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v1.md`
+`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/create_map.md`
+
+Optional Inputs
+Explicit phase count override (integer)
+Project name override (string)
+Explicit roadmap revision intent (when superseding an existing roadmap)
+
+Output Contract
+Output must be written only to:
+- `03_LEVITICUS/PROJECT_ROADMAP_v1.md` on initial generation when no generated
+  roadmap exists
+- the next numeric `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER+1>.md` on revision
+A scaffold placeholder at a canonical roadmap path does not count as a
+generated roadmap version.
+Output must conform exactly to `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.
+If superseding an existing roadmap, the output must include the revision
+metadata block required by `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.
+Each phase must begin with `### PHASE <IDENTIFIER> - <TITLE>`.
+No commentary is permitted outside schema-valid roadmap content.
+
+Guardrails
+Must derive roadmap content only from `01_GENESIS/PROJECT_SEED.md`.
+Must not assume a project type, app shape, framework, runtime, or file layout
+not explicitly supported by the seed.
+Must enforce criteria grammar from `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.
+Must halt if seed is missing or schema conformance fails.
+Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+
+Failure Modes
+Missing required input artifact.
+Missing required phase subsections.
+Phase identifier ordering violation.
+Non-mechanical entry or exit criteria.
+Roadmap content introduces unstated domain assumptions.
+Revision emitted without explicit revision intent.
+Revision missing required metadata block.
+Output path or filename mismatch.
+
+Deterministic Advancement Rule
+`/create_map` is complete only when the emitted
+`03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md` validates against
+`03_LEVITICUS/ROADMAP_SCHEMA_v1.md` with zero deviations.
+
+## 8. /status_sync
+
+Command Name
+/status_sync
+
+Purpose
+Emit canonical phase-state summary into `03_LEVITICUS/STATE_SUMMARY.md` using
+roadmap and state-schema constraints.
+
+Required Inputs
+latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
+`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`
+`03_LEVITICUS/STATE_SUMMARY.md`
+`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/status_sync.md`
+
+Optional Inputs
+Explicit Active Phase override (integer)
+Explicit Open Risks override
+
+Output Contract
+Output must be written only to `03_LEVITICUS/STATE_SUMMARY.md` in
+overwrite-only mode.
+Output must conform exactly to `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`.
+Exactly one Current Work Artifact and one Next Deterministic Objective must be
+present.
+`Roadmap Version` must match the latest active roadmap artifact version.
+
+Guardrails
+Must not modify roadmap content.
+Must not include historical narrative.
+Must derive state from roadmap exit-criteria evaluation.
+Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+
+Failure Modes
+State summary schema deviation.
+Roadmap version mismatch between state summary and latest active roadmap artifact.
+Multiple Current Work Artifact fields.
+Completed Phases containing non-identifiers.
+Objective not tied to unmet Active Phase Exit Criteria.
+
+Deterministic Advancement Rule
+`/status_sync` is complete only when `03_LEVITICUS/STATE_SUMMARY.md` validates
+against `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md` with zero deviations.
+
+## 9. /resume
+
+Command Name
+/resume
+
+Purpose
+Resume deterministic execution by applying `03_LEVITICUS/RESUME_PROTOCOL_v1.md`
+against the active roadmap and state summary.
+
+Required Inputs
+latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
+`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`
+`03_LEVITICUS/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/STATE_SUMMARY.md`
+`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/resume.md`
+
+Optional Inputs
+Explicit phase conflict override declared before execution
+
+Output Contract
+Output must follow the strict sequence defined in
+`03_LEVITICUS/RESUME_PROTOCOL_v1.md`.
+Exactly one Next Deterministic Objective must be selected for the Active Phase.
+Must emit updated `03_LEVITICUS/STATE_SUMMARY.md` conforming to
+`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`.
+`Roadmap Version` in state must match latest active roadmap artifact version.
+The latest active roadmap artifact must remain unchanged.
+
+Guardrails
+Must halt on state-summary schema violations.
+Must halt on Active Phase conflicts or missing phases.
+Must halt if selected objective does not advance one unmet Exit Criterion.
+Must not rely on unstated chat memory.
+Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+
+Failure Modes
+Active Phase mismatch between roadmap and state summary.
+Roadmap version mismatch between state summary and latest active roadmap artifact.
+Completed Phases containing descriptive text.
+Cross-phase editing attempt.
+Premature phase advancement attempt.
+
+Deterministic Advancement Rule
+`/resume` is complete only when one objective advances exactly one unmet Exit
+Criterion in the Active Phase and the updated `03_LEVITICUS/STATE_SUMMARY.md`
+is schema-valid.
+
+## 10. /validate_phase
+
+Command Name
+/validate_phase
+
+Purpose
+Verify Active Phase completion by proving every Exit Criterion with artifact
+evidence.
+
+Required Inputs
+latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
+`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`
+`03_LEVITICUS/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/STATE_SUMMARY.md`
+`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/validate_phase.md`
+
+Optional Inputs
+Explicit phase override declared before execution
+
+Output Contract
+Output title must be `VALIDATION REPORT - PHASE X`.
+For each Exit Criterion include:
+Criterion Identifier, Evidence Type, Artifact Path or Command, Anchor String if
+applicable, Snippet if applicable (max 12 lines), and PASS or FAIL.
+Final PASS requires all criteria PASS.
+If FAIL, include exactly one Next Deterministic Objective for the first unmet
+criterion.
+Output is ephemeral and must not be written to project artifacts.
+
+Guardrails
+Must not modify any artifact.
+Must require direct proof for each criterion.
+Must fail criteria when referenced files, commands, or anchors are missing.
+Must not use qualitative completion language.
+Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+
+Failure Modes
+Missing required input.
+State summary schema noncompliance.
+Active Phase not defined in roadmap.
+Missing evidence for any criterion.
+Snippet exceeds 12 lines.
+
+Deterministic Advancement Rule
+`/validate_phase` is complete only when every Active Phase Exit Criterion is
+proven with compliant evidence.
+
+## 11. /resume_phase
+
+Command Name
+/resume_phase
+
+Purpose
+Execute deterministic continuation for the current Active Phase by repeatedly
+running `/resume` until that phase is complete, then run `/status_sync` once to
+normalize state output.
+
+Required Inputs
+latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
+`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`
+`03_LEVITICUS/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/STATE_SUMMARY.md`
+`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/resume.md`
+`03_LEVITICUS/Prompts/status_sync.md`
+`03_LEVITICUS/Prompts/resume_phase.md`
+
+Optional Inputs
+Maximum `/resume` iteration cap (integer)
+Explicit phase conflict override declared before execution
+
+Output Contract
+Must preserve atomic `/resume` behavior for each internal step.
+Must execute `/resume` repeatedly against one Active Phase only.
+Must stop looping when the starting Active Phase is listed in Completed Phases
+or Active Phase increments.
+Must run `/status_sync` exactly once after loop completion.
+Must emit updated `03_LEVITICUS/STATE_SUMMARY.md` conforming to
+`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`.
+Must not modify the latest active roadmap artifact.
+
+Guardrails
+Must halt immediately if any internal `/resume` call fails.
+Must halt on state-summary schema violations.
+Must halt on Active Phase conflicts.
+Must not skip unmet Exit Criteria.
+Must not blend execution across multiple phases in a single `/resume` step.
+Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+
+Failure Modes
+Internal `/resume` call failed.
+State summary schema deviation.
+Roadmap version mismatch between state summary and latest active roadmap artifact.
+Active Phase mismatch between roadmap and state summary.
+Iteration cap reached before phase completion.
+Cross-phase editing attempt.
+
+Deterministic Advancement Rule
+`/resume_phase` is complete only when the starting Active Phase has been
+deterministically advanced to completion through one-or-more compliant
+`/resume` steps and final state is normalized by one compliant `/status_sync`.
+
+## 12. /summarize_session
+
+Command Name
+/summarize_session
+
+Purpose
+Emit a timestamped session summary artifact into `05_NUMBERS/` capturing
+high-signal decisions, changes, and unresolved items from the current or
+referenced work session.
+
+Required Inputs
+latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
+`03_LEVITICUS/STATE_SUMMARY.md`
+`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/summarize_session.md`
+
+Optional Inputs
+Explicit session date override in `YYYY-MM-DD` format
+Explicit session title override
+Explicit decision list override
+Explicit unresolved items override
+
+Output Contract
+Output must be written only to `05_NUMBERS/SESSION_<YYYY-MM-DD>.md`.
+If a file already exists for that date, output must be written only to
+`05_NUMBERS/SESSION_<YYYY-MM-DD>_<INTEGER>.md` using the next available integer.
+Output must contain these headings in this exact order:
+`# SESSION SUMMARY - <YYYY-MM-DD>`
+`## Decisions`
+`## Changes`
+`## Open Items`
+Each section must contain one-or-more flat bullet entries or the literal line
+`None`.
+Output must not modify any artifact outside `05_NUMBERS/`.
+
+Guardrails
+Must remain summary-only and must not emit transcript-style conversation logs.
+Must not rewrite or modify roadmap, state, implementation, or canon artifacts.
+Must not invent decisions, changes, or open items unsupported by repository
+state or explicit user-provided session context.
+Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+
+Failure Modes
+Missing required input artifact.
+Output path or filename mismatch.
+Missing required section heading.
+Narrative transcript emitted instead of summary bullets.
+Artifact written outside `05_NUMBERS/`.
+
+Deterministic Advancement Rule
+`/summarize_session` is complete only when exactly one timestamped
+`05_NUMBERS/SESSION_<YYYY-MM-DD>[ _<INTEGER>].md` artifact is emitted with all
+required headings in the required order and no other project artifact is
+modified.
+
+## 13. /extract_canon
+
+Command Name
+/extract_canon
+
+Purpose
+Analyze completed or stabilized project artifacts and emit distilled canonical
+outputs into `04_DEUTERONOMY/`.
+
+Required Inputs
+latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
+`03_LEVITICUS/STATE_SUMMARY.md`
+`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/extract_canon.md`
+
+Optional Inputs
+`01_GENESIS/`
+`02_EXODUS/`
+`03_LEVITICUS/`
+`05_NUMBERS/`
+Explicit canon extraction date note
+Explicit artifact omission list
+
+Output Contract
+Output may be written only to these canonical filenames in `04_DEUTERONOMY/`:
+`04_DEUTERONOMY/FINAL_ROADMAP.md`
+`04_DEUTERONOMY/FINAL_ARCHITECTURE.md`
+`04_DEUTERONOMY/PROJECT_SUMMARY.md`
+`04_DEUTERONOMY/WORKFLOW_PATTERN.md`
+The command may emit one-or-more of the listed artifacts, but must not create
+any other filename in `04_DEUTERONOMY/`.
+Each emitted artifact must contain only distilled project conclusions and must
+not contain execution chat transcripts.
+Output must not modify artifacts outside `04_DEUTERONOMY/`.
+
+Guardrails
+Must treat canonical extraction as optional and must not require project
+completion to have occurred in the same session.
+Must derive canon only from repository artifacts and explicit user-provided
+scope overrides.
+Must not move, delete, or rewrite source artifacts in other layers.
+Must not emit speculative conclusions unsupported by project artifacts.
+Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+
+Failure Modes
+Missing required input artifact.
+Output path or filename mismatch.
+Canonical artifact emitted outside `04_DEUTERONOMY/`.
+Source artifact mutation attempted.
+Emitted canon contains unsupported or speculative claims.
+
+Deterministic Advancement Rule
+`/extract_canon` is complete only when one-or-more compliant canonical
+artifacts are emitted to the permitted `04_DEUTERONOMY/` filenames and no
+source artifact outside `04_DEUTERONOMY/` is modified.

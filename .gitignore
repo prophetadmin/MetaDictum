@@ -1,0 +1,18 @@
+# Ignore editor folders
+.vscode/
+.idea/
+
+# Ignore runtime junk
+__pycache__/
+*.log
+*.tmp
+
+# Ignore raw logs and scratch
+05_NUMBERS/raw_chats/
+scratch/
+cache/
+
+# Ignore secrets
+*.env
+*.key
+*.token
