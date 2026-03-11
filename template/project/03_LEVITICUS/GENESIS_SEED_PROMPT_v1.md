@@ -25,6 +25,7 @@ The document must be:
 - Structurally constrained
 - Deterministic
 - Free of roadmap leakage
+- Faithful to verified project-defining details that materially constrain later roadmap generation
 
 ## 3. Output Structure (Mandatory)
 
@@ -59,9 +60,11 @@ Non-Goals
 
 Environment Assumptions  
    - Define tooling, runtime, or contextual assumptions.
+   - Preserve exact verified service endpoints, collection identifiers, storage patterns, or interface anchors when they materially constrain implementation or roadmap derivation.
 
 Constraints  
    - Define structural, technical, or environmental limitations.
+   - Preserve verified architectural facts that restrict implementation choices, including authority boundaries, required resolution layers, or mandatory interface behavior.
 
 Success Definition  
    - Must contain only mechanically verifiable statements.
@@ -102,6 +105,15 @@ The output must NOT:
 - Claim completion
 - Use qualitative success language
 - Use non-mechanical success criteria
+- Omit verified runtime or storage details when those details materially constrain the implementation or downstream roadmap structure
+- Replace concrete verified system facts with higher-level abstraction when the concrete facts affect architecture, integration, or artifact resolution
+
+## 6.1 Fidelity Rules
+
+- Prefer preservation over compression for verified facts that influence implementation structure.
+- If the idea includes exact runtime endpoints, collection names, resolver mappings, storage patterns, or sidecar artifact requirements that constrain the system, include them in the appropriate section.
+- Do not generalize away a verified dependency boundary if the project depends on that boundary being true.
+- Compression is allowed only for details that do not materially affect roadmap derivation or implementation constraints.
 
 ## 7. Formatting Rules
 
