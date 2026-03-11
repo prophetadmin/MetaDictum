@@ -21,8 +21,13 @@ Explicit unresolved items override
 
 Output Contract
 Output must be written only to `05_NUMBERS/SESSION_<YYYY-MM-DD>.md`.
-If a file already exists for that date, output must be written only to
-`05_NUMBERS/SESSION_<YYYY-MM-DD>_<INTEGER>.md` using the next available integer.
+Use the current session date unless an explicit session date override is
+provided.
+If a file already exists for that date, output must be written only to:
+- `05_NUMBERS/SESSION_<YYYY-MM-DD>_1.md` for the second session artifact of the day
+- `05_NUMBERS/SESSION_<YYYY-MM-DD>_2.md` for the third session artifact of the day
+- `05_NUMBERS/SESSION_<YYYY-MM-DD>_<INTEGER>.md` continuing monotonically for
+  later same-day artifacts using the next available integer
 Output must contain these headings in this exact order:
 `# SESSION SUMMARY - <YYYY-MM-DD>`
 `## Decisions`
@@ -37,6 +42,8 @@ Must remain summary-only and must not emit transcript-style conversation logs.
 Must not rewrite or modify roadmap, state, implementation, or canon artifacts.
 Must not invent decisions, changes, or open items unsupported by repository
 state or explicit user-provided session context.
+Must prefer repo-facing decisions, changes, and open items over operator-style
+prompt narration.
 Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
 
 Failure Modes
