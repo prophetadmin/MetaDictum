@@ -11,7 +11,7 @@ Define the deterministic execution plan for the project.
 Generation
 Created by applying:
 
-`03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v1.md`
+`03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
 
 to
 
@@ -20,14 +20,14 @@ to
 Structure
 The roadmap must conform to:
 
-`03_LEVITICUS/ROADMAP_SCHEMA_v1.md`
+`03_LEVITICUS/ROADMAP_SCHEMA_v2.md`
 
 Lifecycle
 
 PROJECT_SEED
-→ architecture inference
-→ roadmap generation
-→ execution phases
+-> architecture inference
+-> roadmap generation
+-> execution phases
 
 Notes
 

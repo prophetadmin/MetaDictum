@@ -3,7 +3,7 @@ Deterministic Workflow Framework
 
 All rules in this document apply to execution governed by:
 
-- `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`
+- `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`
 - `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`  
 - `03_LEVITICUS/RESUME_PROTOCOL_v1.md` 
 - `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`  
@@ -31,7 +31,7 @@ Detection Signal
 An attempted modification targets an artifact not belonging to the Active Phase defined in the `03_LEVITICUS/STATE_SUMMARY.md`.  
 
 Blocking Condition (if applicable)  
-If modification affects governance artifacts or Exit Criteria outside the Active Phase → HALT.  
+If modification affects governance artifacts or Exit Criteria outside the Active Phase -> HALT.  
 
 Corrective Action  
 Restrict execution scope to artifacts belonging to the Active Phase only.  
@@ -50,10 +50,10 @@ Failure Mode Name
 Completion Claim Without Proof  
 
 Detection Signal  
-A declaration of phase completion occurs without `/validate_phase` producing proof for every Exit Criterion defined in `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.  
+A declaration of phase completion occurs without `/validate_phase` producing proof for every Exit Criterion defined in `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`.  
 
 Blocking Condition (if applicable)  
-If completion is claimed without proof → phase advancement prohibited.  
+If completion is claimed without proof -> phase advancement prohibited.  
 
 Corrective Action  
 Execute `/validate_phase` using required inputs defined in `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`.  
@@ -74,7 +74,7 @@ Detection Signal
 `03_LEVITICUS/STATE_SUMMARY.md` contains narrative content, duplicated history, more than one Current Work Artifact pointer, more than one Next Deterministic Objective, or deviates from `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`.  
 
 Blocking Condition (if applicable)  
-If `03_LEVITICUS/STATE_SUMMARY.md` fails schema validation → `/resume` must HALT.  
+If `03_LEVITICUS/STATE_SUMMARY.md` fails schema validation -> `/resume` must HALT.  
 
 Corrective Action  
 Regenerate `03_LEVITICUS/STATE_SUMMARY.md` using `/status_sync` per `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`.  
@@ -91,16 +91,16 @@ Failure Mode Name
 Planner Ambiguity / Roadmap Schema Violation  
 
 Detection Signal  
-A roadmap contains missing required headings, ambiguous deliverables, qualitative Exit Criteria, or deviates from `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.  
+A roadmap contains missing required headings, ambiguous deliverables, qualitative Exit Criteria, or deviates from `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`.  
 
 Blocking Condition (if applicable)  
-If roadmap fails structural validation → `/create_map` invalid; do not proceed to subsequent phases.  
+If roadmap fails structural validation -> `/create_map_v2` invalid; do not proceed to subsequent phases.  
 
 Corrective Action  
-Re-run transformation using `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v1.md` and enforce strict compliance with `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.  
+Re-run transformation using `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md` and enforce strict compliance with `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`.  
 
 Verification Check  
-Roadmap structurally validates against `03_LEVITICUS/ROADMAP_SCHEMA_v1.md` with zero deviations.  
+Roadmap structurally validates against `03_LEVITICUS/ROADMAP_SCHEMA_v2.md` with zero deviations.  
 
 ---
 
@@ -113,11 +113,11 @@ Detection Signal
 Output includes unnecessary full artifact reproduction, historical narrative, duplicated roadmap content, or exceeds the minimalism constraints defined by the framework.  
 
 Blocking Condition (if applicable)  
-If output reproduces entire artifacts or unnecessary history → HALT and re-emit minimal output only.  
+If output reproduces entire artifacts or unnecessary history -> HALT and re-emit minimal output only.  
 
 Corrective Action  
 Restrict working set strictly to:  
-- `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`  
+- `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`  
 - `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`  
 - `03_LEVITICUS/RESUME_PROTOCOL_v1.md`  
 - `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`  

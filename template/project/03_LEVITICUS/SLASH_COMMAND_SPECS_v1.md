@@ -30,7 +30,6 @@ directory containing `01_GENESIS/`, `02_EXODUS/`, and `03_LEVITICUS/`.
 
 ## 4. Registered Commands
 
-- /create_map
 - /create_map_v2
 - /seed
 - /status_sync
@@ -98,68 +97,7 @@ Deterministic Advancement Rule
 `/seed` is complete only when a compliant `01_GENESIS/PROJECT_SEED.md` is
 emitted from `01_GENESIS/IDEA.md` with no other project artifact modified.
 
-## 7. /create_map
-
-Command Name
-/create_map
-
-Purpose
-Transform `01_GENESIS/PROJECT_SEED.md` into
-`03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md` by applying
-`03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v1.md` and enforcing
-`03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.
-
-Required Inputs
-`01_GENESIS/PROJECT_SEED.md`
-`03_LEVITICUS/ROADMAP_SCHEMA_v1.md`
-`03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v1.md`
-`03_LEVITICUS/FAILURE_CODES_v1.md`
-`03_LEVITICUS/Prompts/create_map.md`
-
-Optional Inputs
-Explicit phase count override (integer)
-Project name override (string)
-Explicit roadmap revision intent (when superseding an existing roadmap)
-
-Output Contract
-Output must be written only to:
-- `03_LEVITICUS/PROJECT_ROADMAP_v1.md` on initial generation when no generated
-  roadmap exists
-- the next numeric `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER+1>.md` on revision
-A scaffold placeholder at a canonical roadmap path does not count as a
-generated roadmap version.
-Output must conform exactly to `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.
-If superseding an existing roadmap, the output must include the revision
-metadata block required by `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.
-Each phase must begin with `### PHASE <IDENTIFIER> - <TITLE>`.
-No commentary is permitted outside schema-valid roadmap content.
-
-Guardrails
-Must derive roadmap content only from `01_GENESIS/PROJECT_SEED.md`.
-Must not assume a project type, app shape, framework, runtime, or file layout
-not explicitly supported by the seed.
-Must enforce criteria grammar from `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`.
-Must halt if seed is missing or schema conformance fails.
-Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
-
-Failure Modes
-Missing required input artifact.
-Missing required phase subsections.
-Phase identifier ordering violation.
-Non-mechanical entry or exit criteria.
-Roadmap content introduces unstated domain assumptions.
-Revision emitted without explicit revision intent.
-Revision missing required metadata block.
-Output path or filename mismatch.
-
-Deterministic Advancement Rule
-`/create_map` is complete only when the emitted
-`03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md` validates against
-`03_LEVITICUS/ROADMAP_SCHEMA_v1.md` with zero deviations.
-
-## 8. /status_sync
-
-## 8. /create_map_v2
+## 7. /create_map_v2
 
 Command Name
 /create_map_v2
@@ -221,7 +159,7 @@ Deterministic Advancement Rule
 `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md` passes
 `03_LEVITICUS/Prompts/validate_map_v2.md` with zero violations.
 
-## 9. /status_sync
+## 8. /status_sync
 
 Command Name
 /status_sync
@@ -266,7 +204,7 @@ Deterministic Advancement Rule
 `/status_sync` is complete only when `03_LEVITICUS/STATE_SUMMARY.md` validates
 against `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md` with zero deviations.
 
-## 10. /resume
+## 9. /resume
 
 Command Name
 /resume
@@ -314,7 +252,7 @@ Deterministic Advancement Rule
 Criterion in the Active Phase and the updated `03_LEVITICUS/STATE_SUMMARY.md`
 is schema-valid.
 
-## 11. /validate_phase
+## 10. /validate_phase
 
 Command Name
 /validate_phase
@@ -362,7 +300,7 @@ Deterministic Advancement Rule
 `/validate_phase` is complete only when every Active Phase Exit Criterion is
 proven with compliant evidence.
 
-## 12. /resume_phase
+## 11. /resume_phase
 
 Command Name
 /resume_phase
@@ -417,7 +355,7 @@ Deterministic Advancement Rule
 deterministically advanced to completion through one-or-more compliant
 `/resume` steps and final state is normalized by one compliant `/status_sync`.
 
-## 13. /validate_map_v2
+## 12. /validate_map_v2
 
 Command Name
 /validate_map_v2
@@ -460,7 +398,7 @@ Deterministic Advancement Rule
 `/validate_map_v2` is complete only when exactly one compliant verdict is
 emitted: `PASS` or `FAIL <CODE>: <single-line reason>`.
 
-## 14. /summarize_session
+## 13. /summarize_session
 
 Command Name
 /summarize_session
@@ -515,7 +453,7 @@ Deterministic Advancement Rule
 required headings in the required order and no other project artifact is
 modified.
 
-## 15. /extract_canon
+## 14. /extract_canon
 
 Command Name
 /extract_canon

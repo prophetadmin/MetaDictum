@@ -48,8 +48,8 @@ No manual flags are required.
 - `03_LEVITICUS/Prompts/validate_phase.md`
 
 ### Conditional (Read Only When Needed)
-- `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`
-  - Required for create/restructure/repair/validate operations on roadmap structure.
+- `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`
+  - Required for create/restructure/repair/validate operations on the active roadmap structure.
   - Not required for normal task execution or routine state updates.
 - `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`
   - Read only when command contract behavior is being changed or validated.
@@ -68,7 +68,7 @@ When roadmap does not exist, read and use:
 - `01_GENESIS/*IDEA*.md` (if present)
 - `01_GENESIS/PROJECT_SEED.md`
   - If present only as a scaffold placeholder, overwrite it with generated seed
-    content before `/create_map`.
+    content before `/create_map_v2`.
 - `03_LEVITICUS/GENESIS_SEED_PROMPT_v1.md`
 - `03_LEVITICUS/Prompts/seed.md`
 - `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
