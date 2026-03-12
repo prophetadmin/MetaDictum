@@ -60,8 +60,8 @@ No manual flags are required.
 - `01_GENESIS/*IDEA*.md` (original ideation source files)
 - `03_LEVITICUS/GENESIS_SEED_PROMPT_v1.md`
 - `03_LEVITICUS/Prompts/seed.md`
-- `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v1.md`
-- `03_LEVITICUS/Prompts/create_map.md`
+- `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
+- `03_LEVITICUS/Prompts/create_map_v2.md`
 
 ## Bootstrap Mode
 When roadmap does not exist, read and use:
@@ -71,9 +71,9 @@ When roadmap does not exist, read and use:
     content before `/create_map`.
 - `03_LEVITICUS/GENESIS_SEED_PROMPT_v1.md`
 - `03_LEVITICUS/Prompts/seed.md`
-- `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v1.md`
-- `03_LEVITICUS/Prompts/create_map.md`
-- `03_LEVITICUS/ROADMAP_SCHEMA_v1.md`
+- `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
+- `03_LEVITICUS/Prompts/create_map_v2.md`
+- `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`
 
 Output of bootstrap phase:
 - `03_LEVITICUS/PROJECT_ROADMAP_v1.md` on initial generation

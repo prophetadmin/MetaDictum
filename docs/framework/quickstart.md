@@ -36,9 +36,9 @@ Run `/seed` to transform `01_GENESIS/IDEA.md` into
 This step converts the idea artifact into a more structured seed suitable for
 roadmap generation.
 
-## 4. Run `/create_map`
+## 4. Run `/create_map_v2`
 
-Run `/create_map` to transform `01_GENESIS/PROJECT_SEED.md` into the initial
+Run `/create_map_v2` to transform `01_GENESIS/PROJECT_SEED.md` into the initial
 roadmap artifact at `03_LEVITICUS/PROJECT_ROADMAP_v1.md`.
 
 ## 5. Run `/status_sync`

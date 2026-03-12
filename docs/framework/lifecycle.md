@@ -4,7 +4,7 @@ MetaDictum projects follow a simple progression:
 
 1. Form and record the project idea in `01_GENESIS/IDEA.md`.
 2. Generate `PROJECT_SEED.md` with `/seed`.
-3. Generate a roadmap with `/create_map`.
+3. Generate a roadmap with `/create_map_v2`.
 4. Normalize execution state in `03_LEVITICUS/STATE_SUMMARY.md`.
 5. Execute deterministic objectives in `02_EXODUS/`.
 6. Optionally summarize meaningful sessions into `05_NUMBERS/`.
