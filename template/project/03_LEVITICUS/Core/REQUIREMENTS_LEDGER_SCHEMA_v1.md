@@ -174,6 +174,22 @@ The ledger MUST satisfy all of the following:
     component must imply concrete artifacts, runtime behavior, and executable
     validation obligations.
 
+13. If the seed states that broader product work depends on inherited
+    implementation already present in the repo, prerequisite normalization,
+    portability correction, or another enabling foundation, the ledger MUST
+    include one-or-more separate mandatory requirement blocks for that
+    foundation.
+
+14. If the seed indicates that an inherited implementation base or enabling
+    foundation may remain structurally separable from the broader application,
+    the ledger MUST preserve at least one distinct component boundary for that
+    work rather than folding it entirely into application-surface or generic
+    workflow components.
+
+15. Product surfaces and prerequisite normalization or inherited-boundary work
+    MUST remain separately represented when their implementation order,
+    dependency structure, or extraction boundaries can diverge.
+
 ## 6. Schema Authority
 
 This document defines `REQUIREMENTS_LEDGER_SCHEMA_v1`.

@@ -63,11 +63,13 @@ Command Name
 
 Purpose
 Transform the primary Genesis idea artifact into `01_GENESIS/PROJECT_SEED.md`
-by applying `03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md`.
+by applying `03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md` and enforcing
+`03_LEVITICUS/Core/PROJECT_SEED_SCHEMA_v1.md`.
 
 Required Inputs
 `01_GENESIS/IDEA.md`
 `03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md`
+`03_LEVITICUS/Core/PROJECT_SEED_SCHEMA_v1.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/Prompts/Bootstrap/seed.md`
 
@@ -77,20 +79,25 @@ Project title override
 Output Contract
 Output must be written only to `01_GENESIS/PROJECT_SEED.md` in overwrite-only
 mode.
-Output must conform exactly to the structure required by
-`03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md`.
+Output must conform exactly to
+`03_LEVITICUS/Core/PROJECT_SEED_SCHEMA_v1.md`.
 No commentary is permitted outside the required seed content.
 
 Guardrails
 Must derive seed content only from the selected Genesis idea artifact.
 Must not emit roadmap phases, slash commands, resume logic, or execution
 sequencing.
+Must not blend inherited foundation, prerequisite normalization, product
+surfaces, runtime anchors, and behavior rules into one generic seed statement
+when they are structurally distinct in the idea.
 Must halt if no Genesis idea artifact exists.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Missing required input artifact.
 Seed output violates required structure.
+Structurally distinct foundation, normalization, surface, runtime, or behavior
+content blended into non-separable seed statements.
 Roadmap or execution content leaked into seed.
 Output path or filename mismatch.
 
