@@ -1,4 +1,4 @@
-# /summarize_session Prompt
+﻿# /summarize_session Prompt
 
 Command Name
 /summarize_session
@@ -11,7 +11,7 @@ referenced work session.
 Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
-`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 
 Optional Inputs
 Explicit session date override in `YYYY-MM-DD` format
@@ -44,7 +44,7 @@ Must not invent decisions, changes, or open items unsupported by repository
 state or explicit user-provided session context.
 Must prefer repo-facing decisions, changes, and open items over operator-style
 prompt narration.
-Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Missing required input artifact.
@@ -58,3 +58,4 @@ Deterministic Advancement Rule
 `05_NUMBERS/SESSION_<YYYY-MM-DD>[ _<INTEGER>].md` artifact is emitted with all
 required headings in the required order and no other project artifact is
 modified.
+

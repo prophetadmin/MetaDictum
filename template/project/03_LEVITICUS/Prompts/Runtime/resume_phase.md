@@ -1,4 +1,4 @@
-# /resume_phase Prompt
+﻿# /resume_phase Prompt
 
 Command Name
 /resume_phase
@@ -10,12 +10,12 @@ normalize state.
 
 Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
-`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`
-`03_LEVITICUS/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
+`03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
-`03_LEVITICUS/FAILURE_CODES_v1.md`
-`03_LEVITICUS/Prompts/resume.md`
-`03_LEVITICUS/Prompts/status_sync.md`
+`03_LEVITICUS/Core/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Prompts/Runtime/resume.md`
+`03_LEVITICUS/Prompts/Runtime/status_sync.md`
 
 Optional Inputs
 Maximum `/resume` iteration cap (integer)
@@ -27,7 +27,7 @@ Must preserve `/resume` atomicity (one objective per internal step).
 Must stop when the starting Active Phase is complete.
 Must execute `/status_sync` exactly once after loop completion.
 Must emit updated `03_LEVITICUS/STATE_SUMMARY.md` conforming to
-`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`.
+`03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`.
 Must preserve `Roadmap Version` value matching the latest active roadmap artifact.
 
 Guardrails
@@ -36,7 +36,7 @@ Must halt on state-summary schema violations.
 Must halt on Active Phase conflicts.
 Must not modify the latest active roadmap artifact.
 Must not rely on unstated chat memory.
-Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Internal `/resume` call failed.
@@ -50,3 +50,4 @@ Deterministic Advancement Rule
 `/resume_phase` completes only when the starting Active Phase is completed via
 compliant `/resume` iterations and the final emitted
 `03_LEVITICUS/STATE_SUMMARY.md` is normalized by one compliant `/status_sync`.
+

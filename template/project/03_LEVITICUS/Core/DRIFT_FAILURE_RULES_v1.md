@@ -1,12 +1,12 @@
-# DRIFT_FAILURE_RULES_v1.md  
+﻿# DRIFT_FAILURE_RULES_v1.md  
 Deterministic Workflow Framework  
 
 All rules in this document apply to execution governed by:
 
-- `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`
-- `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`  
-- `03_LEVITICUS/RESUME_PROTOCOL_v1.md` 
-- `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`  
+- `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`
+- `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`  
+- `03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md` 
+- `03_LEVITICUS/Core/SLASH_COMMAND_SPECS_v1.md`  
 
 All rule blocks must follow the locked structure below. No deviations permitted.
 
@@ -35,7 +35,7 @@ If modification affects governance artifacts or Exit Criteria outside the Active
 
 Corrective Action  
 Restrict execution scope to artifacts belonging to the Active Phase only.  
-If cross-phase work is required, record it in the Deferred Registry defined by `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md` with:  
+If cross-phase work is required, record it in the Deferred Registry defined by `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md` with:  
 ID, Origin Phase, Description, Reason, Re-entry Phase, Status.  
 
 Verification Check  
@@ -50,13 +50,13 @@ Failure Mode Name
 Completion Claim Without Proof  
 
 Detection Signal  
-A declaration of phase completion occurs without `/validate_phase` producing proof for every Exit Criterion defined in `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`.  
+A declaration of phase completion occurs without `/validate_phase` producing proof for every Exit Criterion defined in `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.  
 
 Blocking Condition (if applicable)  
 If completion is claimed without proof -> phase advancement prohibited.  
 
 Corrective Action  
-Execute `/validate_phase` using required inputs defined in `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`.  
+Execute `/validate_phase` using required inputs defined in `03_LEVITICUS/Core/SLASH_COMMAND_SPECS_v1.md`.  
 If FAIL, set Next Deterministic Objective to the first unmet Exit Criterion returned by validation.  
 
 Verification Check  
@@ -71,17 +71,17 @@ Failure Mode Name
 `03_LEVITICUS/STATE_SUMMARY.md` Schema Drift / Structural Expansion  
 
 Detection Signal  
-`03_LEVITICUS/STATE_SUMMARY.md` contains narrative content, duplicated history, more than one Current Work Artifact pointer, more than one Next Deterministic Objective, or deviates from `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`.  
+`03_LEVITICUS/STATE_SUMMARY.md` contains narrative content, duplicated history, more than one Current Work Artifact pointer, more than one Next Deterministic Objective, or deviates from `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`.  
 
 Blocking Condition (if applicable)  
 If `03_LEVITICUS/STATE_SUMMARY.md` fails schema validation -> `/resume` must HALT.  
 
 Corrective Action  
-Regenerate `03_LEVITICUS/STATE_SUMMARY.md` using `/status_sync` per `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`.  
+Regenerate `03_LEVITICUS/STATE_SUMMARY.md` using `/status_sync` per `03_LEVITICUS/Core/SLASH_COMMAND_SPECS_v1.md`.  
 Deferred Registry entries must be preserved exactly (no pruning).  
 
 Verification Check  
-`03_LEVITICUS/STATE_SUMMARY.md` structurally validates against `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md` with zero deviations.  
+`03_LEVITICUS/STATE_SUMMARY.md` structurally validates against `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md` with zero deviations.  
 
 ---
 
@@ -91,16 +91,16 @@ Failure Mode Name
 Planner Ambiguity / Roadmap Schema Violation  
 
 Detection Signal  
-A roadmap contains missing required headings, ambiguous deliverables, qualitative Exit Criteria, or deviates from `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`.  
+A roadmap contains missing required headings, ambiguous deliverables, qualitative Exit Criteria, or deviates from `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.  
 
 Blocking Condition (if applicable)  
 If roadmap fails structural validation -> `/create_map_v2` invalid; do not proceed to subsequent phases.  
 
 Corrective Action  
-Re-run transformation using `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md` and enforce strict compliance with `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`.  
+Re-run transformation using `03_LEVITICUS/Core/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md` and enforce strict compliance with `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.  
 
 Verification Check  
-Roadmap structurally validates against `03_LEVITICUS/ROADMAP_SCHEMA_v2.md` with zero deviations.  
+Roadmap structurally validates against `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md` with zero deviations.  
 
 ---
 
@@ -117,10 +117,10 @@ If output reproduces entire artifacts or unnecessary history -> HALT and re-emit
 
 Corrective Action  
 Restrict working set strictly to:  
-- `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`  
-- `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`  
-- `03_LEVITICUS/RESUME_PROTOCOL_v1.md`  
-- `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`  
+- `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`  
+- `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`  
+- `03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`  
+- `03_LEVITICUS/Core/SLASH_COMMAND_SPECS_v1.md`  
 - Latest `03_LEVITICUS/STATE_SUMMARY.md`  
 - Current Work Artifact  
 
@@ -130,3 +130,4 @@ Verification Check
 No duplicated full artifacts appear in output.  
 `03_LEVITICUS/STATE_SUMMARY.md` remains minimal and schema-compliant.  
 Exactly one Next Deterministic Objective is present when emitting `03_LEVITICUS/STATE_SUMMARY.md`.  
+

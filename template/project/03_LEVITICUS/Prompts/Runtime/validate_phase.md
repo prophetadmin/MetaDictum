@@ -1,4 +1,4 @@
-# /validate_phase Prompt
+﻿# /validate_phase Prompt
 
 Command Name
 /validate_phase
@@ -9,10 +9,10 @@ the latest roadmap artifact.
 
 Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
-`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`
-`03_LEVITICUS/RESUME_PROTOCOL_v1.md`
+`03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
+`03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
-`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 
 Optional Inputs
 Explicit phase override declared before execution
@@ -32,7 +32,7 @@ Must not modify artifacts.
 Must require direct proof for each criterion.
 Must fail criteria when referenced files, commands, or anchors are missing.
 Must not use qualitative completion language.
-Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Missing required input.
@@ -44,3 +44,4 @@ Snippet exceeds 12 lines.
 Deterministic Advancement Rule
 `/validate_phase` completes only when every Active Phase Exit Criterion is
 proven with compliant evidence.
+

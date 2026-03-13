@@ -1,4 +1,4 @@
-# RESUME PROTOCOL v1 - Deterministic Continuation Procedure
+﻿# RESUME PROTOCOL v1 - Deterministic Continuation Procedure
 
 ## 1. Resume Preconditions
 
@@ -6,11 +6,11 @@ Resume may execute only when all inputs below are present:
 - project instructions artifact, if the host environment defines one
 - latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 - `03_LEVITICUS/STATE_SUMMARY.md` conforming to
-  `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`
-- `03_LEVITICUS/FAILURE_CODES_v1.md`
+  `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
+- `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 
 No prior chat memory may be used as authoritative state.
-Failures must use canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+Failures must use canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 If any mandatory input is missing or unreadable: halt.
 
@@ -110,3 +110,4 @@ Execute in this exact order:
 8. Emit updated `03_LEVITICUS/STATE_SUMMARY.md`.
 
 No phase blending or additional planning is permitted during resume execution.
+

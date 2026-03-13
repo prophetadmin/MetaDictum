@@ -1,5 +1,7 @@
 # ROADMAP SCHEMA v2 - Implementation-Bearing Phase Template
 
+Schema Revision: v2.1
+
 ## 1. Scope
 
 This schema defines the required structure for any roadmap generated into
@@ -29,7 +31,7 @@ Order is fixed and non-reorderable.
 ### PHASE <IDENTIFIER> - <TITLE>
 
 **Phase Type**
-<One of: `contract`, `implementation`, `validation`>
+<One of: `implementation`, `validation`>
 
 **Purpose**
 <Single-paragraph structural objective statement. No qualitative claims.>
@@ -85,6 +87,7 @@ Order is fixed and non-reorderable.
 7. A roadmap MUST contain at least:
    - one `implementation` phase
    - one `validation` phase
+   - `PHASE 1` with `Phase Type` = `implementation`
 
 ## 5. Criteria Grammar
 
@@ -128,31 +131,76 @@ Invalid criteria invalidate the phase.
 
 ## 6. Phase-Type Enforcement
 
-### 6.1 Contract Phase Rules
-
-A `contract` phase may use artifact and anchor criteria.
-A `contract` phase MUST NOT be the only phase type in the roadmap.
-
-### 6.2 Implementation Phase Rules
+### 6.1 Implementation Phase Rules
 
 An `implementation` phase MUST satisfy all of the following:
 - At least one Exit Criterion MUST be of type Command Exit Code or Command
   Output Anchor.
-- At least one Produced Artifact MUST be non-documentation implementation
-  artifact (for example executable/module/config/test harness).
+- At least one Produced Artifact MUST be a non-documentation implementation
+  artifact under `02_EXODUS/` (for example executable/module/service/surface/
+  test harness).
 - Exit Criteria MUST NOT be satisfiable using only `.md` artifacts plus
   file-exists or anchor checks.
 - Command criteria MUST NOT be exclusively dry-run commands.
+- Produced Artifacts MUST NOT be exclusively governance or planning artifacts
+  under `01_GENESIS/` or `03_LEVITICUS/`.
 
 If any rule above is not met: `ARCHITECTURE_COVERAGE_FAILURE`.
 
-### 6.3 Validation Phase Rules
+### 6.2 Validation Phase Rules
 
 A `validation` phase MUST contain at least three command-based Exit Criteria.
 At least one command criterion MUST exercise the end-to-end system path required
 by the seed's declared problem and scope boundaries.
 
-## 7. Seed Coverage Rule
+## 7. Requirements Coverage Rule
+
+A roadmap MUST include a coverage matrix block before the Component Coverage
+Matrix:
+
+**Requirements Coverage Matrix**
+- `REQ-<IDENTIFIER>` -> <Phase identifier(s)> -> <Produced artifact path(s)> -> <Exit criterion anchor>
+
+Coverage obligations:
+- Every requirement block in `01_GENESIS/REQUIREMENTS_LEDGER.md` with
+  `Mandatory` = `yes` MUST map to at least one phase Exit Criterion.
+- Every requirement of type `surface`, `module`, or `integration` MUST map to
+  at least one Produced Artifact and at least one command-based Exit Criterion.
+- Every requirement of type `behavior`, `data`, or `constraint` MUST map to at
+  least one Exit Criterion that proves the requirement structurally or
+  executably.
+- Every requirement of type `validation` MUST map to at least one `validation`
+  phase Exit Criterion.
+- Every mandatory requirement MUST map to at least one Produced Artifact path
+  under `02_EXODUS/` that does not end with `.md`.
+- No mandatory requirement may map only to documentation artifacts plus
+  file-exists or anchor checks.
+
+Any unmapped mandatory requirement is a schema violation.
+
+## 8. Component Coverage Rule
+
+A roadmap MUST include a coverage matrix block before the Seed Coverage Matrix:
+
+**Component Coverage Matrix**
+- `COMP-<IDENTIFIER>` -> <Phase identifier(s)> -> <Produced artifact path(s)> -> <Exit criterion anchor>
+
+Coverage obligations:
+- Every component block in `01_GENESIS/REQUIREMENTS_LEDGER.md` MUST map to at
+  least one phase Exit Criterion and at least one Produced Artifact.
+- Every component of type `surface`, `service`, `module`, `integration`, or
+  `workflow` MUST map to at least one command-based Exit Criterion.
+- Every component of type `validation_harness` MUST map to at least one
+  `validation` phase Exit Criterion.
+- Every component block MUST map to at least one Produced Artifact path under
+  `02_EXODUS/` that does not end with `.md`.
+- Component dependencies MUST not be contradicted by mapped phase ordering.
+- No component may map only to documentation artifacts plus file-exists or
+  anchor checks.
+
+Any unmapped component is a schema violation.
+
+## 9. Seed Coverage Rule
 
 A roadmap MUST include a coverage matrix block before Phase 1:
 
@@ -167,7 +215,7 @@ Coverage obligations:
 
 Any unmapped item is a schema violation.
 
-## 8. Phase Completion Rule
+## 10. Phase Completion Rule
 
 A phase is COMPLETE if and only if:
 - every Exit Criterion evaluates TRUE
@@ -185,9 +233,9 @@ anchors them through `Exit Criteria`.
 No qualitative declaration such as "done", "complete", or "satisfactory" has
 any effect on phase state.
 
-## 9. Schema Authority
+## 11. Schema Authority
 
-This document defines `ROADMAP_SCHEMA_v2`.
+This document defines `ROADMAP_SCHEMA_v2` with revision `v2.1`.
 
 Any roadmap generated under v2 command contracts MUST conform exactly to this
 schema. Deviation from required headings, required order, criteria grammar,
@@ -201,10 +249,11 @@ Schema changes require:
 No planner, agent, or resume protocol may redefine or extend this schema
 implicitly.
 
-## 10. Revision Metadata Rule (When Superseding Existing Roadmap)
+## 12. Revision Metadata Rule (When Superseding Existing Roadmap)
 
 If a roadmap revision supersedes an existing roadmap artifact, the revised
-roadmap MUST include a top metadata block before the Seed Coverage Matrix:
+roadmap MUST include a top metadata block before the Requirements Coverage
+Matrix:
 
 **Roadmap Version**
 <Version identifier, for example: v2, v3>
@@ -219,3 +268,13 @@ When generating an initial roadmap under v2 rules, `Supersedes` should be
 `None`.
 The active roadmap artifact is the highest available
 `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md` by integer version.
+
+## 13. Delta v2.1
+
+Change summary for revision `v2.1`:
+- Removed `contract` as an allowed `Phase Type` value.
+- Required `PHASE 1` to be `implementation`.
+- Strengthened implementation phase enforcement to require non-documentation
+  artifacts under `02_EXODUS/`.
+- Added code-first mapping constraints for mandatory requirements and component
+  coverage so mappings include non-`.md` artifacts under `02_EXODUS/`.

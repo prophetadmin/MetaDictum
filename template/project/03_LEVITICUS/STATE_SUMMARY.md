@@ -11,18 +11,18 @@ Allow deterministic project continuation across sessions or agents.
 Schema
 This file must conform to:
 
-`03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`
+`03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
 
 Lifecycle
 
 roadmap execution
-→ state update
-→ resume execution
+-> state update
+-> resume execution
 
 Notes
 
 * The state summary is updated after phase completion.
-* This file determines the **current project position**.
+* This file determines the current project position.
 * Agents must consult this file before executing work.
 
 If this file is empty, execution has not yet begun.

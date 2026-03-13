@@ -1,4 +1,4 @@
-# /extract_canon Prompt
+﻿# /extract_canon Prompt
 
 Command Name
 /extract_canon
@@ -10,7 +10,7 @@ outputs into `04_DEUTERONOMY/`.
 Required Inputs
 latest roadmap artifact matching `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`
 `03_LEVITICUS/STATE_SUMMARY.md`
-`03_LEVITICUS/FAILURE_CODES_v1.md`
+`03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 
 Optional Inputs
 `01_GENESIS/`
@@ -39,7 +39,7 @@ Must derive canon only from repository artifacts and explicit user-provided
 scope overrides.
 Must not move, delete, or rewrite source artifacts in other layers.
 Must not emit speculative conclusions unsupported by project artifacts.
-Must emit failures using canonical codes from `03_LEVITICUS/FAILURE_CODES_v1.md`.
+Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Missing required input artifact.
@@ -52,3 +52,4 @@ Deterministic Advancement Rule
 `/extract_canon` completes only when one-or-more compliant canonical artifacts
 are emitted to the permitted `04_DEUTERONOMY/` filenames and no source artifact
 outside `04_DEUTERONOMY/` is modified.
+

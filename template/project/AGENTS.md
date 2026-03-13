@@ -1,4 +1,4 @@
-# AGENTS.md
+﻿# AGENTS.md
 
 ## Purpose
 This file defines binding runtime behavior for agents in this workspace.
@@ -39,47 +39,64 @@ No manual flags are required.
 - `03_LEVITICUS/Contracts/project_charter.md`
 
 ### Runtime Active
-- `03_LEVITICUS/STATE_SUMMARY_SCHEMA_v1.md`
-- `03_LEVITICUS/RESUME_PROTOCOL_v1.md`
-- `03_LEVITICUS/FAILURE_CODES_v1.md`
-- `03_LEVITICUS/Prompts/resume.md`
-- `03_LEVITICUS/Prompts/resume_phase.md`
-- `03_LEVITICUS/Prompts/status_sync.md`
-- `03_LEVITICUS/Prompts/validate_phase.md`
+- `03_LEVITICUS/Core/STATE_SUMMARY_SCHEMA_v1.md`
+- `03_LEVITICUS/Core/RESUME_PROTOCOL_v1.md`
+- `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
+- `03_LEVITICUS/Prompts/Runtime/resume.md`
+- `03_LEVITICUS/Prompts/Runtime/resume_phase.md`
+- `03_LEVITICUS/Prompts/Runtime/status_sync.md`
+- `03_LEVITICUS/Prompts/Runtime/validate_phase.md`
 
 ### Conditional (Read Only When Needed)
-- `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`
+- `03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`
+  - Required for `/derive_requirements`, `/create_map_v2`, `/validate_map_v2`, and repair operations on the seed-to-roadmap planning bridge.
+- `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`
   - Required for create/restructure/repair/validate operations on the active roadmap structure.
   - Not required for normal task execution or routine state updates.
-- `03_LEVITICUS/SLASH_COMMAND_SPECS_v1.md`
+- `03_LEVITICUS/Core/SLASH_COMMAND_SPECS_v1.md`
   - Read only when command contract behavior is being changed or validated.
-- `03_LEVITICUS/DRIFT_FAILURE_RULES_v1.md`
+- `03_LEVITICUS/Core/DRIFT_FAILURE_RULES_v1.md`
   - Read when drift is suspected, during audits, or while enforcing recovery behavior.
 
 ### Bootstrap-Only (Ignore During Execution Unless Explicitly Requested)
 - `01_GENESIS/*IDEA*.md` (original ideation source files)
-- `03_LEVITICUS/GENESIS_SEED_PROMPT_v1.md`
-- `03_LEVITICUS/Prompts/seed.md`
-- `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
-- `03_LEVITICUS/Prompts/create_map_v2.md`
+- `03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md`
+- `03_LEVITICUS/Core/REQUIREMENTS_DERIVATION_PROMPT_v1.md`
+- `03_LEVITICUS/Prompts/Bootstrap/seed.md`
+- `03_LEVITICUS/Prompts/Bootstrap/derive_requirements.md`
+- `03_LEVITICUS/Core/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
+- `03_LEVITICUS/Prompts/Bootstrap/create_map_v2.md`
 
 ## Bootstrap Mode
 When roadmap does not exist, read and use:
 - `01_GENESIS/*IDEA*.md` (if present)
 - `01_GENESIS/PROJECT_SEED.md`
   - If present only as a scaffold placeholder, overwrite it with generated seed
-    content before `/create_map_v2`.
-- `03_LEVITICUS/GENESIS_SEED_PROMPT_v1.md`
-- `03_LEVITICUS/Prompts/seed.md`
-- `03_LEVITICUS/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
-- `03_LEVITICUS/Prompts/create_map_v2.md`
-- `03_LEVITICUS/ROADMAP_SCHEMA_v2.md`
+    content before `/derive_requirements`.
+- `01_GENESIS/REQUIREMENTS_LEDGER.md`
+  - If present only as a scaffold placeholder, overwrite it with generated
+    requirements content before `/create_map_v2`.
+- `03_LEVITICUS/Core/GENESIS_SEED_PROMPT_v1.md`
+- `03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`
+- `03_LEVITICUS/Core/REQUIREMENTS_DERIVATION_PROMPT_v1.md`
+- `03_LEVITICUS/Prompts/Bootstrap/seed.md`
+- `03_LEVITICUS/Prompts/Bootstrap/derive_requirements.md`
+- `03_LEVITICUS/Core/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
+- `03_LEVITICUS/Prompts/Bootstrap/create_map_v2.md`
+- `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`
 
 Output of bootstrap phase:
+- `01_GENESIS/PROJECT_SEED.md` on seed generation
+- `01_GENESIS/REQUIREMENTS_LEDGER.md` on requirements derivation
 - `03_LEVITICUS/PROJECT_ROADMAP_v1.md` on initial generation
 - `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER+1>.md` on explicit revision
 
 After roadmap creation, return to Execution Mode automatically.
+
+Expected bootstrap sequence:
+1. `/seed`
+2. `/derive_requirements`
+3. `/create_map_v2`
 
 ## Roadmap Change Policy
 Roadmap updates are allowed only with explicit revision intent.
@@ -108,3 +125,4 @@ Rules:
 3. In Execution Mode, run `/status_sync` first.
 4. Execute work from roadmap phases via `/resume`.
 5. Update state summary with progress and decisions.
+
