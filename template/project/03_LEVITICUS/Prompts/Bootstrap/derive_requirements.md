@@ -25,6 +25,7 @@ decomposition pass over `01_GENESIS/PROJECT_SEED.md`.
 
 The pass must explicitly account for:
 - user-facing product surfaces and delivery shape
+- product experience invariants and interaction-shape constraints
 - runtime modules and service boundaries
 - external integrations
 - data, storage, and identity obligations
@@ -54,8 +55,13 @@ Before output, verify:
 - every seed Scope Boundaries Included item maps to at least one mandatory
   requirement block
 - every seed Constraints item maps to at least one mandatory requirement block
+- every seed Product Experience Invariants item maps to at least one mandatory
+  requirement block
 - every seed-declared product surface maps to at least one `surface`
   requirement block
+- no seed-declared product experience invariant is collapsed into a generic
+  "surface exists" requirement when its behavior or presentation constraints
+  can diverge
 - every seed-declared prerequisite normalization, portability correction, or
   inherited-boundary preservation obligation maps to at least one separate
   mandatory requirement block
@@ -84,6 +90,8 @@ Must not invent frameworks, file layouts, runtimes, or command names not
 grounded in the seed.
 Must not collapse user-facing product surfaces into internal-only module
 requirements.
+Must not collapse seed-declared product experience invariants into generic
+surface-exists requirements.
 Must not collapse build-distinct implementation boundaries into a single vague
 component.
 Must not collapse prerequisite normalization work, inherited implementation

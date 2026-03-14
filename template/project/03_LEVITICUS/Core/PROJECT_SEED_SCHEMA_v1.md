@@ -6,8 +6,8 @@ This schema defines the required structure for `01_GENESIS/PROJECT_SEED.md`.
 
 The project seed is a deterministic bootstrap artifact. It normalizes the
 project idea into a bounded statement of intent, problem, scope, assumptions,
-constraints, and mechanically verifiable success conditions that later
-bootstrap commands must consume.
+constraints, product experience invariants, and mechanically verifiable
+success conditions that later bootstrap commands must consume.
 
 ## 2. Canonical Path Rule
 
@@ -45,6 +45,9 @@ Environment Assumptions
 Constraints
 - <Atomic structural, technical, behavioral, or environmental limitation>
 
+Product Experience Invariants
+- <Atomic user-facing experience, interaction, presentation, or anti-pattern invariant>
+
 Success Definition
 - <Mechanically verifiable statement>
 
@@ -57,6 +60,7 @@ Success Definition
    `Non-Goals`
    `Environment Assumptions`
    `Constraints`
+   `Product Experience Invariants`
    `Success Definition`
 
 2. No additional sections, subsection headings, inline labeled subsections, or
@@ -72,7 +76,8 @@ Success Definition
    in that order.
 
 6. `Included`, `Excluded`, `Non-Goals`, `Environment Assumptions`,
-   `Constraints`, and `Success Definition` MUST use flat bullets only.
+   `Constraints`, `Product Experience Invariants`, and `Success Definition`
+   MUST use flat bullets only.
 
 7. Every bullet in `Scope Boundaries` -> `Included` MUST express one distinct
    project boundary. If the idea contains separately buildable or separately
@@ -97,7 +102,16 @@ Success Definition
     architectural conditions. If one bullet contains multiple independent
     obligations, it MUST be split into separate bullets.
 
-13. `Success Definition` MUST contain only mechanically verifiable bullets.
+13. `Product Experience Invariants` MUST contain atomic user-facing
+    experience, interaction, presentation, disclosure-shape, setup-friction,
+    evidence-shape, or anti-pattern constraints that materially constrain the
+    finished product.
+
+14. If the idea declares multiple independent product-experience constraints,
+    each invariant MUST be represented as a separate bullet. They MUST NOT be
+    collapsed into one generic quality statement.
+
+15. `Success Definition` MUST contain only mechanically verifiable bullets.
     Each bullet MUST conform to one of these forms:
     `File exists at <path>.`
     `<path> contains the exact string: "<string>".`
@@ -105,10 +119,10 @@ Success Definition
     `<Artifact A> is generated strictly from <Artifact B>.`
     `Command "<command>" exits with code 0 and emits "<anchor>" in <output path>.`
 
-14. `Success Definition` MUST NOT contain qualitative language, future intent,
+16. `Success Definition` MUST NOT contain qualitative language, future intent,
     validation procedures, or subjective claims.
 
-15. The seed MUST NOT contain roadmap phases, slash commands, resume logic,
+17. The seed MUST NOT contain roadmap phases, slash commands, resume logic,
     execution sequencing, implementation steps, or later-bootstrap directives.
 
 ## 5. Separation Coverage Rules
@@ -135,13 +149,14 @@ The seed MUST satisfy all of the following:
    gating, persistence gating, or truthful failure boundaries MUST appear in
    `Constraints` as separate atomic bullets when they impose distinct rules.
 
-6. The seed MUST NOT contain meta-transformation content such as "next step",
+6. If the idea declares stylistic, interaction, presentation, or anti-pattern
+   language that materially constrains the finished product shape, that
+   language MUST be preserved in `Product Experience Invariants` as atomic
+   bullets rather than compressed away into generic scope or surface language.
+
+7. The seed MUST NOT contain meta-transformation content such as "next step",
    "requirements derivation should extract", or similar instructions to later
    bootstrap commands.
-
-7. The seed MUST compress or omit aesthetic, branding, or mood language unless
-   that language creates a direct structural boundary or constraint that later
-   commands must preserve.
 
 ## 6. Schema Authority
 

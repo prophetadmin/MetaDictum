@@ -29,6 +29,7 @@ preventing structural blending between:
 - inherited implementation foundation
 - prerequisite normalization or portability work
 - user-facing product surfaces
+- user-facing product experience invariants
 - runtime anchors and environment facts
 - behavior and policy constraints
 - mechanically verifiable success conditions
@@ -52,6 +53,7 @@ The pass MUST account for:
 - inherited implementation boundaries already present in the repo
 - prerequisite normalization, portability, or enabling foundation work
 - distinct user-facing product surfaces
+- distinct user-facing product experience invariants
 - runtime endpoints, collection identifiers, storage patterns, fanout rules,
   and other exact environment anchors
 - behavior and policy rules that constrain implementation
@@ -84,11 +86,13 @@ remain separately represented in the seed:
 - inherited implementation foundation already present in the repo
 - prerequisite normalization or portability work
 - each user-facing product surface
+- each user-facing product experience invariant
 - behavior or policy rules with distinct user-visible effects
 
-Do not blend foundation, normalization, product surfaces, runtime anchors, and
-behavior rules into one multi-purpose statement when later derivation may need
-to preserve those boundaries separately.
+Do not blend foundation, normalization, product surfaces, product experience
+invariants, runtime anchors, and behavior rules into one multi-purpose
+statement when later derivation may need to preserve those boundaries
+separately.
 
 ### 5.3 Runtime Anchor Gate
 
@@ -105,7 +109,17 @@ Do not generalize away verified runtime anchors.
 
 Do not emit qualitative, aesthetic, subjective, or procedural success claims.
 
-### 5.5 No Transformation Leakage Gate
+### 5.5 Product Experience Invariant Gate
+
+If the idea declares stylistic, interaction, presentation, evidence-shape,
+setup-friction, or anti-pattern language that materially constrains the
+finished product, preserve that language as atomic
+`Product Experience Invariants` bullets.
+
+Do not compress product experience intent into one generic "polished app"
+statement when the idea defines distinct user-facing invariants.
+
+### 5.6 No Transformation Leakage Gate
 
 Do not emit statements about what later commands should extract, infer,
 generate, or validate.
@@ -126,8 +140,13 @@ Output must:
 If output violates the seed schema: halt with `SCHEMA_VIOLATION`.
 
 If distinct inherited-foundation, prerequisite-normalization, product-surface,
-runtime-anchor, or behavior-rule concerns are blended into one statement such
-that later derivation cannot preserve them separately: halt with
+product-experience, runtime-anchor, or behavior-rule concerns are blended into
+one statement such that later derivation cannot preserve them separately: halt
+with
+`ARCHITECTURE_COVERAGE_FAILURE`.
+
+If materially constraining product-experience language from the idea is omitted
+or collapsed into non-specific seed prose: halt with
 `ARCHITECTURE_COVERAGE_FAILURE`.
 
 If later-command instructions, roadmap leakage, or execution sequencing appear
@@ -144,8 +163,8 @@ The output must NOT:
 - contain slash commands
 - contain resume logic
 - claim completion
-- include aesthetic manifesto language unless it materially constrains scope or
-  constraints
+- omit stylistic, presentation, or anti-pattern language when it materially
+  constrains the finished product shape
 - replace concrete verified system facts with higher-level abstraction when the
   concrete facts affect architecture, integration, or artifact resolution
 

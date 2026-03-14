@@ -11,6 +11,8 @@ acceptance cannot pass on documentation-only implementation criteria.
 Required Inputs
 `01_GENESIS/PROJECT_SEED.md`
 `01_GENESIS/REQUIREMENTS_LEDGER.md`
+`01_GENESIS/COMPONENT_REALIZATION_MAP.md`
+`03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`
 `03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`
 `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
@@ -21,42 +23,73 @@ Validation Checks (All Required)
 2. Phase identifiers are monotonically increasing integers starting at 1.
 3. `01_GENESIS/REQUIREMENTS_LEDGER.md` conforms to
    `03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`.
-4. Required `Requirements Coverage Matrix` exists and maps every mandatory
+4. `01_GENESIS/COMPONENT_REALIZATION_MAP.md` conforms to
+   `03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`.
+5. Required `Requirements Coverage Matrix` exists and maps every mandatory
    requirements-ledger item to concrete phase Exit Criteria and Produced
    Artifacts.
-5. Required `Component Coverage Matrix` exists and maps every component block
+6. Required `Component Coverage Matrix` exists and maps every component block
    to concrete phase Exit Criteria and Produced Artifacts.
-6. Required `Seed Coverage Matrix` exists and maps:
+7. Required `Seed Coverage Matrix` exists and maps:
    - all seed Scope Boundaries Included items
    - all seed Constraints items
    to concrete phase Exit Criteria.
-7. `PHASE 1` has `Phase Type` = `implementation`.
-8. At least one phase has `Phase Type` = `implementation`.
-9. At least one phase has `Phase Type` = `validation`.
-10. Every `implementation` phase includes:
+8. Every realization block primary artifact path appears in roadmap Produced
+   Artifacts and remains attributable to the source component coverage rather
+   than being omitted.
+9. If the realization map preserves build-distinct surface or control-layer
+   realization blocks, the roadmap does not collapse them into identical
+   produced artifact coverage.
+10. `PHASE 1` has `Phase Type` = `implementation`.
+11. At least one phase has `Phase Type` = `implementation`.
+12. At least one phase has `Phase Type` = `validation`.
+13. Every `implementation` phase includes:
    - at least one command-based Exit Criterion
    - at least one non-documentation produced artifact under `02_EXODUS/`
    - at least one non-dry-run command criterion
-11. No implementation phase can complete using only `.md` file-exists and anchor
+14. No implementation phase can complete using only `.md` file-exists and anchor
    checks.
-12. Every mandatory requirement maps to at least one produced artifact path
+15. Every mandatory requirement maps to at least one produced artifact path
     under `02_EXODUS/` that does not end with `.md`.
-13. No mandatory ledger item of type `surface`, `module`, or `integration`
+16. No mandatory ledger item of type `surface`, `module`, or `integration`
     maps only to documentation artifacts or anchor checks.
-14. Every component block maps to at least one produced artifact path under
+17. Every component block maps to at least one produced artifact path under
     `02_EXODUS/` that does not end with `.md`.
-15. No component block maps only to documentation artifacts or anchor checks.
-16. Component dependency ordering is not contradicted by mapped phase order.
-17. Validation phase includes at least one command criterion that exercises the
+18. No component block maps only to documentation artifacts or anchor checks.
+19. Component dependency ordering is not contradicted by mapped phase order.
+20. Validation phase includes at least one command criterion that exercises the
    end-to-end system path implied by the seed problem and included scope.
-18. If the requirements ledger contains a mandatory `surface` requirement, the
+21. If the requirements ledger contains a mandatory `surface` requirement, the
     roadmap includes at least one implementation artifact and one validation
     command that exercise that surface.
-19. If the requirements ledger contains build-distinct component blocks, the
+22. If the requirements ledger contains build-distinct component blocks, the
     roadmap preserves them as separately mappable implementation or validation
     work rather than collapsing them into one generic artifact path.
-20. Roadmap does not invent command/path/framework conventions unless grounded in
+23. Roadmap does not invent command/path/framework conventions unless grounded in
    seed or explicitly allowed in policy.
+24. No phase requires a validation script or command to pass before all
+    artifacts exercised by that script or command are realized in roadmap
+    phase order.
+25. If the requirements ledger contains any mandatory validation requirement
+    whose statement, artifact obligation, or validation obligation
+    establishes deterministic bootstrap or seed-to-planning proof rooted in
+    `01_GENESIS/PROJECT_SEED.md`, or the component realization map contains
+    any realization block whose objective or boundary rules establish
+    deterministic bootstrap proof rooted in `01_GENESIS/PROJECT_SEED.md`, the
+    roadmap contains a terminal validation phase dedicated to that proof.
+26. Under the same condition, that terminal validation phase `Purpose`
+    explicitly mentions deterministic seed-to-planning proof against
+    `01_GENESIS/PROJECT_SEED.md`.
+27. Under the same condition, that terminal validation phase
+    `Work Definition (Scope-Bound)` explicitly mentions seed-derived planning
+    traceability or regeneration against `01_GENESIS/PROJECT_SEED.md`.
+28. Under the same condition, that terminal validation phase
+   `Exit Criteria (All Required)` include:
+   - `02_EXODUS/tests/validation_harness.ps1 contains the exact anchor string: "seed-derived planning artifacts are validated against 01_GENESIS/PROJECT_SEED.md".`
+   - `02_EXODUS/tests/validation_harness.ps1 contains the exact anchor string: "regeneration and traceability from the seed-defined contract".`
+   - `Command "powershell -ExecutionPolicy Bypass -File 02_EXODUS/tests/validation_harness.ps1" exits with code 0.`
+29. Under the same condition, runtime-test pass/fail criteria alone do not
+    satisfy deterministic bootstrap-proof obligations.
 
 Failure Contract
 - Structural or grammar failure: `SCHEMA_VIOLATION`

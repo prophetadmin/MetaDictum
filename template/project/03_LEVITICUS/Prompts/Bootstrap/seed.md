@@ -38,16 +38,21 @@ artifact or explicit override.
 Must not introduce roadmap phases, slash commands, implementation sequencing,
 or resume logic.
 Must not blend inherited foundation, prerequisite normalization, product
-surfaces, runtime anchors, and behavior rules into one generic seed statement
-when they are structurally distinct in the idea.
+surfaces, product experience invariants, runtime anchors, and behavior rules
+into one generic seed statement when they are structurally distinct in the
+idea.
+Must preserve stylistic, presentation, and anti-pattern language from the idea
+when it materially constrains the finished product shape.
 Must not modify any artifact outside `01_GENESIS/PROJECT_SEED.md`.
 Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v1.md`.
 
 Failure Modes
 Missing required input artifact.
 Seed output structure violation.
-Structurally distinct foundation, normalization, surface, runtime, or behavior
-content blended into non-separable seed statements.
+Structurally distinct foundation, normalization, surface, product-experience,
+runtime, or behavior content blended into non-separable seed statements.
+Materially constraining product experience language omitted or collapsed into
+generic seed prose.
 Roadmap leakage into seed content.
 Output written outside `01_GENESIS/PROJECT_SEED.md`.
 
