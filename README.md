@@ -6,6 +6,12 @@ This repository contains the framework documentation and reusable project templa
 
 The operational scaffold lives in `template/project/`.
 
+## Why MetaDictum Exists
+
+- AI-assisted project work often loses continuity across sessions.
+- MetaDictum keeps project state in repository artifacts instead of chat memory.
+- That makes planning, execution, handoff, and resumption more deterministic.
+
 ## Workspace Model
 
 MetaDictum uses a five-domain workspace model:
