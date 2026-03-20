@@ -1,11 +1,11 @@
-﻿# /create_map_v2 Prompt
-
-Command Name
+﻿Command Name
 /create_map_v2
 
 Purpose
-Transform `01_GENESIS/PROJECT_SEED.md` and
-`01_GENESIS/REQUIREMENTS_LEDGER.md` into a roadmap strictly compliant with
+Transform `01_GENESIS/PROJECT_SEED.md`,
+`01_GENESIS/REQUIREMENTS_LEDGER.md`, and
+`01_GENESIS/COMPONENT_REALIZATION_MAP.md`
+ into a roadmap strictly compliant with
 `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md` by applying
 `03_LEVITICUS/Core/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`.
 
@@ -14,7 +14,8 @@ Roadmap policy:
   constraints.
 - The roadmap is not a scratch pad for lazy just-in-time planning.
 - Initial generation MUST be best-effort comprehensive from seed-derived
-  architecture and requirements-ledger decomposition.
+  architecture, requirements-ledger decomposition, and component-realization
+  boundaries.
 
 Required Inputs
 `01_GENESIS/PROJECT_SEED.md`
@@ -23,6 +24,7 @@ Required Inputs
 `03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`
 `03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`
 `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/Core/PLANNER_TO_ROADMAP_TRANSFORMATION_PROMPT_v2.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 
@@ -103,7 +105,7 @@ Architecture Derivation Step (Mandatory, Internal)
 Before writing a roadmap artifact matching
 `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md`, perform best-effort architecture
 analysis of `01_GENESIS/PROJECT_SEED.md` and reconcile it with the normalized
-requirements ledger.
+requirements ledger and component realization map.
 
 Coverage Gate (Mandatory)
 Before generation, verify inferred architecture and every mandatory ledger item
@@ -160,6 +162,22 @@ Artifacts, HALT with `ARCHITECTURE_COVERAGE_FAILURE`.
 If build-distinct realization blocks are collapsed into identical produced
 artifact coverage, HALT with `ARCHITECTURE_COVERAGE_FAILURE`.
 
+If any implementation phase allows listed produced artifacts to satisfy
+completion through pre-existing file presence plus generic smoke execution,
+HALT with `ARCHITECTURE_COVERAGE_FAILURE`.
+
+If any phase omits its canonical phase completion receipt path under
+`03_LEVITICUS/Execution/`, HALT with
+`ARCHITECTURE_COVERAGE_FAILURE`.
+
+If any phase omits receipt existence or receipt-schema Exit Criteria tied to
+the roadmap version and phase identifier, HALT with
+`ARCHITECTURE_COVERAGE_FAILURE`.
+
+If any phase can complete while its canonical project-pass receipt criteria
+remain unmet, HALT with
+`ARCHITECTURE_COVERAGE_FAILURE`.
+
 Bootstrap Proof Gate (Mandatory)
 If `01_GENESIS/REQUIREMENTS_LEDGER.md` contains any mandatory validation
 requirement whose statement, artifact obligation, or validation obligation
@@ -213,8 +231,8 @@ Identifiers must increase monotonically from 1.
 No commentary is permitted outside schema-valid roadmap content.
 
 Guardrails
-Must derive roadmap content only from `01_GENESIS/PROJECT_SEED.md` and
-`01_GENESIS/REQUIREMENTS_LEDGER.md` and
+Must derive roadmap content only from `01_GENESIS/PROJECT_SEED.md`,
+`01_GENESIS/REQUIREMENTS_LEDGER.md`, and
 `01_GENESIS/COMPONENT_REALIZATION_MAP.md`.
 Must execute roadmap generation as deterministic transformation rather than
 architecture redesign or alternative phase exploration.
@@ -229,6 +247,15 @@ Must treat the component realization map as binding for concrete artifact
 ownership and non-collapse boundaries.
 Must enforce criteria grammar and phase-type rules from
 `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.
+Must reject any roadmap whose implementation phases allow listed produced
+artifacts to satisfy completion through pre-existing file presence plus generic
+smoke execution.
+Must reject any roadmap whose phases omit canonical project-pass receipt
+artifacts or receipt-aware completion criteria.
+If an upstream derived bootstrap artifact cannot support compliant roadmap
+generation under the active contracts, must rerun the earliest affected
+bootstrap stage after any authorized prompt or schema correction rather than
+hand-patching the downstream roadmap artifact.
 Must halt if seed, requirements ledger, or component realization map is
 missing or if output violates schema.
 Must not use roadmap generation as deferred planning for obvious required work.
@@ -243,5 +270,4 @@ Must emit failures using canonical codes from `03_LEVITICUS/Core/FAILURE_CODES_v
 Deterministic Advancement Rule
 `/create_map_v2` completes only when the emitted
 `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md` passes
-`03_LEVITICUS/Prompts/Runtime/validate_map_v2.md` with zero violations.
-
+`03_LEVITICUS/Prompts/Bootstrap/validate_map_v2.md` with zero violations.

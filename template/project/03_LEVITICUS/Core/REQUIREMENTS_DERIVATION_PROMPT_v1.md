@@ -113,7 +113,27 @@ parts could be implemented, validated, or phased separately.
 
 Preserve seed exclusions and non-goals verbatim in `## Explicit Exclusions`.
 
-### 4.7 Foundational Preservation Gate
+### 4.7 Repository-State Neutrality Gate
+
+The derivation layer MUST remain compatible with both of the following starting
+states:
+- relevant implementation artifacts do not yet exist under `02_EXODUS/`
+- relevant implementation artifacts already exist under `02_EXODUS/`
+
+Do not assume a clean repository.
+Do not assume pre-existing implementation is already sufficient.
+
+If a seed-defined requirement may depend on repository artifacts that could
+already exist, derive requirements and components in a form compatible with
+one of the following realization actions at roadmap or execution time:
+- create missing artifact
+- validate existing artifact
+- extend incomplete artifact
+
+Artifact presence alone must not be treated as fulfillment of a mandatory
+requirement.
+
+### 4.8 Foundational Preservation Gate
 
 If the seed declares inherited implementation already present in the repo,
 prerequisite normalization work, portability correction, or another enabling

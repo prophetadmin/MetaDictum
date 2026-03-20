@@ -6,7 +6,8 @@ Command Name
 Purpose
 Validate a roadmap artifact against `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`,
 requirements-ledger coverage, and seed-coverage requirements so roadmap
-acceptance cannot pass on documentation-only implementation criteria.
+acceptance cannot pass on documentation-only implementation criteria or
+receipt-omitting phase criteria.
 
 Required Inputs
 `01_GENESIS/PROJECT_SEED.md`
@@ -15,6 +16,7 @@ Required Inputs
 `03_LEVITICUS/Core/COMPONENT_REALIZATION_MAP_SCHEMA_v1.md`
 `03_LEVITICUS/Core/REQUIREMENTS_LEDGER_SCHEMA_v1.md`
 `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`
+`03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md`
 `03_LEVITICUS/Core/FAILURE_CODES_v1.md`
 `03_LEVITICUS/PROJECT_ROADMAP_v<INTEGER>.md` (target)
 
@@ -91,6 +93,45 @@ Validation Checks (All Required)
 29. Under the same condition, runtime-test pass/fail criteria alone do not
     satisfy deterministic bootstrap-proof obligations.
 
+30. Reject any `implementation` phase whose `Work Definition (Scope-Bound)`
+    uses preservation-only semantics for repository-owned produced artifacts.
+    A phase fails this check if it preserves listed produced artifacts without
+    explicit create, validate, or extend semantics.
+
+31. For every `implementation` phase, if any listed produced artifact could
+    already exist at phase start, the phase MUST include at least one Exit
+    Criterion that proves phase-specific sufficiency of that artifact set or
+    proves repository-owned extension around that artifact boundary.
+
+32. Reject any `implementation` phase whose listed produced artifacts can
+    satisfy completion through pre-existing file existence checks plus one
+    generic smoke command exit code.
+
+33. A generic smoke command is insufficient for `implementation`-phase
+    completion when it does not prove the phase-specific obligation associated
+    with the listed produced artifacts.
+
+34. If an `implementation` phase lists produced artifacts under `02_EXODUS/`,
+    roadmap validation fails when no Exit Criterion beyond file existence and
+    generic smoke proves the required realized behavior for that artifact set.
+
+35. Every phase includes its canonical phase completion receipt path under
+    `03_LEVITICUS/Execution/` in `Produced Artifacts`.
+
+36. Every phase receipt path matches the roadmap version and phase identifier
+    of the phase that declares it.
+
+37. Every phase includes an Exit Criterion requiring file existence at its
+    canonical receipt path.
+
+38. Every phase includes an Exit Criterion requiring the canonical receipt
+    path to be generated strictly from
+    `03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md` without schema
+    deviation.
+
+39. No phase can complete while its canonical project-pass receipt criteria
+    remain unmet.
+
 Failure Contract
 - Structural or grammar failure: `SCHEMA_VIOLATION`
 - Missing architecture or coverage mapping: `ARCHITECTURE_COVERAGE_FAILURE`
@@ -100,4 +141,3 @@ Output Contract
 Emit only one of:
 - `PASS`
 - `FAIL <CODE>: <single-line reason>`
-

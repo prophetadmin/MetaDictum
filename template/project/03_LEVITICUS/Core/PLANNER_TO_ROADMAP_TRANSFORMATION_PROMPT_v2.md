@@ -124,7 +124,7 @@ Output must:
   fill them through bounded section-level writes in deterministic order
 
 If superseding an existing roadmap, include revision metadata block required by
-Section 10 of `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.
+Section 12 of `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.
 
 ## 6. Phase Construction Rules
 
@@ -136,6 +136,14 @@ Section 10 of `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.
   - at least one command-based Exit Criterion
   - at least one non-documentation produced artifact under `02_EXODUS/`
   - at least one non-dry-run command criterion
+- Every phase MUST include its canonical phase completion receipt path under
+  `03_LEVITICUS/Execution/ROADMAP_<Roadmap Version>_PHASE_<IDENTIFIER>_RECEIPT.md`
+  in `Produced Artifacts`.
+- Every phase MUST include Exit Criteria requiring both:
+  - `File exists at <canonical receipt path>.`
+  - `<canonical receipt path> is generated strictly from 03_LEVITICUS/Core/PHASE_COMPLETION_RECEIPT_SCHEMA_v1.md without schema deviation.`
+- Receipt criteria are required completion conditions for every phase and
+  supplement rather than replace artifact-specific or command-based proof.
 - A roadmap is invalid if all implementation progress can be satisfied by
   `.md` file existence and anchor criteria.
 - A roadmap is invalid if any mandatory requirement is mapped without at least
@@ -149,6 +157,27 @@ Section 10 of `03_LEVITICUS/Core/ROADMAP_SCHEMA_v2.md`.
 - If the requirements ledger contains build-distinct component blocks, the
   roadmap is invalid unless those components remain separately mappable in
   produced artifacts and validation paths.
+- Implementation phases MUST remain compatible with both of the following
+  repository states:
+  - required artifact is absent at phase start
+  - required artifact already exists at phase start
+- Existing artifact presence is not sufficient for phase completion.
+- For each implementation-phase produced artifact, the phase logic MUST be
+  compatible with one of the following realization actions:
+  - create missing artifact
+  - validate existing artifact
+  - extend incomplete artifact
+- If a produced artifact already exists at phase start, the phase MUST still
+  include Exit Criteria that prove phase-specific sufficiency or prove
+  repository-owned augmentation around that artifact boundary.
+- A roadmap is invalid if an implementation phase can complete solely because
+  its listed produced artifacts already exist and one generic smoke command
+  exits with code 0.
+- A roadmap is invalid if any phase can complete while its canonical
+  project-pass receipt criteria remain unmet.
+- If the seed or requirements ledger implies integration with pre-existing
+  repository artifacts, relevant implementation phases MUST not use
+  preservation-only semantics.
 - If the component realization map contains build-distinct realization blocks,
   the roadmap is invalid unless their primary artifact paths remain preserved
   in roadmap produced artifacts and are not collapsed into identical coverage.
@@ -208,4 +237,3 @@ If these rules cannot be satisfied from the seed: halt with
   writes.
 - No narration of patch retries, fallback write behavior, or internal edit
   strategy unless final artifact write fails.
-
