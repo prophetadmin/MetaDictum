@@ -23,9 +23,21 @@ of information do not collapse into one mixed working memory:
 
 - `01_GENESIS/` for ideation and seed material
 - `02_EXODUS/` for implementation work
-- `03_LEVITICUS/` for governance artifacts, prompts, schemas, and roadmaps
+- `03_LEVITICUS/` for governance artifacts, prompts, schemas, roadmaps, state,
+  and canonical phase completion receipts
 - `04_DEUTERONOMY/` for optional distilled canon
 - `05_NUMBERS/` for optional historical and session summaries
+
+Bootstrap determinism is layered on purpose:
+
+- seed normalization (`PROJECT_SEED.md`)
+- requirements normalization (`REQUIREMENTS_LEDGER.md`)
+- component realization mapping (`COMPONENT_REALIZATION_MAP.md`)
+- roadmap synthesis (`PROJECT_ROADMAP_v<INTEGER>.md`)
+
+Execution determinism is receipt-aware by design. A phase is not complete
+until required exit criteria and the canonical phase receipt criteria are both
+satisfied.
 
 The template boundary is intentional. The project template is an execution
 surface for agents and should remain as sterile as practical. Framework

@@ -9,7 +9,7 @@ Purpose
 Normalize the project seed into a binding requirements and component inventory for roadmap generation.
 
 Generation
-Created by applying:
+Created during `/create_map_v2` bootstrap preprocessing by applying:
 
 `03_LEVITICUS/Core/REQUIREMENTS_DERIVATION_PROMPT_v1.md`
 
@@ -24,14 +24,16 @@ This file must conform to:
 
 Lifecycle
 
-seed idea
+`01_GENESIS/IDEA.md`
+-> `/seed`
 -> `PROJECT_SEED.md`
 -> requirements derivation
 -> `REQUIREMENTS_LEDGER.md`
--> roadmap generation
+-> roadmap generation (`/create_map_v2`)
 
 Notes
 
 * This file does not count as generated until it is replaced with schema-valid requirements content.
 * The requirements ledger is a binding planning input for roadmap generation.
 * The roadmap must not be generated until this file exists and conforms to schema.
+* `/create_map_v2` must treat this ledger inventory as binding for coverage and phase planning.

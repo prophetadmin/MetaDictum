@@ -15,13 +15,18 @@ This file must conform to:
 
 Lifecycle
 
-roadmap execution
--> state update
--> resume execution
+`/create_map_v2`
+-> `PROJECT_ROADMAP_v<INTEGER>.md`
+-> `/status_sync`
+-> `STATE_SUMMARY.md`
+-> `/resume_phase` (or `/resume`)
+-> `/record_phase_completion`
+-> `/status_sync`
 
 Notes
 
-* The state summary is updated after phase completion.
+* The state summary is initialized and normalized by `/status_sync`.
+* The active phase is receipt-aware: a phase is not complete until required canonical receipt criteria are satisfied.
 * This file determines the current project position.
 * Agents must consult this file before executing work.
 

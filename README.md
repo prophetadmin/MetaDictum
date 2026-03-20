@@ -4,7 +4,16 @@ MetaDictum is a filesystem-authoritative framework for deterministic, multi-sess
 
 This repository contains the framework documentation and reusable project template that implement that workflow.
 
+**Version:** v2.0  
+MetaDictum v2 introduces runtime hardening for deterministic execution, including receipt-gated phase completion, explicit phase advancement, and repository-state-neutral execution semantics.
+
 The operational scaffold lives in `template/project/`.
+
+## Why MetaDictum Exists
+
+- AI-assisted project work often loses continuity across sessions.
+- MetaDictum keeps project state in repository artifacts instead of chat memory.
+- That makes planning, execution, handoff, and resumption more deterministic.
 
 ## Workspace Model
 
@@ -27,3 +36,10 @@ MetaDictum uses a five-domain workspace model:
 - `docs/framework/philosophy.md`
 - `docs/framework/lifecycle.md`
 - `docs/framework/planning_guidance.md`
+
+## v2.0 — Runtime Hardening
+
+- Introduced receipt-gated phase completion
+- Eliminated pre-existing artifact auto-completion
+- Enforced explicit phase advancement via runtime prompts
+- Added repository-state-neutral execution semantics
