@@ -38,23 +38,25 @@ Chat is never authoritative.
 ## 3. Layer Responsibilities
 
 ### GENESIS
-- ideation and problem framing
-- non-binding
+- ideation and bootstrap planning derivation
+- human-authored ideation remains non-binding until transformed by bootstrap
+  commands into derived planning artifacts
 
 ### EXODUS
 - working drafts, code, experiments
 - mutable, non-canonical by default
 
 ### LEVITICUS
-- governance rules, interfaces, constraints
+- governance rules, roadmap control, normalized runtime state, and canonical
+  phase-receipt interfaces
 
 ### DEUTERONOMY
 - approved canon and durable summaries
 - superseded only by explicit revision
 
 ### NUMBERS
-- forensic logs and decision trail
-- append-only intent
+- optional session summaries, logs, and operational records
+- non-canonical unless explicitly promoted
 
 ---
 
