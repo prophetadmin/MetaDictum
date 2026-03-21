@@ -7,6 +7,13 @@ This repository contains the framework documentation and reusable project templa
 **Version:** v2.0  
 MetaDictum v2 introduces runtime hardening for deterministic execution, including receipt-gated phase completion, explicit phase advancement, and repository-state-neutral execution semantics.
 
+**Execution exemplar:** [ARGUS](https://github.com/prophetadmin/Argus) demonstrates the framework applied to a non-trivial project from bootstrap through validation, with repository artifacts preserved as execution evidence.
+
+The operational scaffold lives in `template/project/`.
+
+**Version:** v2.0  
+MetaDictum v2 introduces runtime hardening for deterministic execution, including receipt-gated phase completion, explicit phase advancement, and repository-state-neutral execution semantics.
+
 The operational scaffold lives in `template/project/`.
 
 ## Why MetaDictum Exists
