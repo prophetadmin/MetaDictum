@@ -21,7 +21,8 @@ artifact-governed work rather than disposable one-shot generation.
 The framework separates project truth into filesystem layers so different kinds
 of information do not collapse into one mixed working memory:
 
-- `01_GENESIS/` for ideation and seed material
+- `01_GENESIS/` for bootstrap planning artifacts: idea, seed, requirements
+  ledger, and component realization map
 - `02_EXODUS/` for implementation work
 - `03_LEVITICUS/` for governance artifacts, prompts, schemas, roadmaps, state,
   and canonical phase completion receipts
@@ -40,13 +41,17 @@ until required exit criteria and the canonical phase receipt criteria are both
 satisfied.
 
 The template boundary is intentional. The project template is an execution
-surface for agents and should remain as sterile as practical. Framework
-philosophy, planning advice, and explanatory prose belong outside the template
-so they do not pollute the operational workspace.
+surface for agents and binding operational artifacts, not a place for
+framework-explanation prose. Philosophy, planning advice, and other explanatory
+documents belong outside the template so the operational workspace stays clean.
 
 Determinism in MetaDictum is mechanical, not magical. The framework can execute
 consistently against whatever artifacts it is given. Better outcomes still
 depend on better inputs.
+
+Weak inputs do not make the framework nondeterministic. They push discovery,
+correction, and clarification work into planning artifacts that would be more
+stable if the project had been defined more concretely up front.
 
 Optional commands such as session summarization and canon extraction extend the
 framework without becoming mandatory runtime bureaucracy:
@@ -54,8 +59,8 @@ framework without becoming mandatory runtime bureaucracy:
 - `05_NUMBERS/` may be used to preserve high-signal session summaries
 - `04_DEUTERONOMY/` may be populated later through canon extraction
 
-Neither is required for basic execution. Both exist to improve continuity and
-distillation when the user wants them.
+Neither is required for normal execution. Both exist only when the user wants
+additional continuity or distillation.
 
 Deuteronomy is best treated as a conclusions layer rather than an actively
 maintained mirror of the project. Canon may be extracted after the project is

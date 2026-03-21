@@ -1,91 +1,91 @@
 # MetaDictum Quick Start
 
-This guide is the practical first-use path for starting a MetaDictum project.
+This is the shortest canonical path to start and run a MetaDictum project.
 
-## 1. Idea Formation
+## 1. Copy the template into a new project workspace
 
-Before using the template, spend time exploring the project with a capable
-model or collaborator.
+Start from:
 
-Use that stage to clarify:
+[template/project/](https://github.com/prophetadmin/MetaDictum/tree/main/template/project)
 
-- the problem being solved
-- who the project is for
-- desired outcomes
-- important constraints
-- environment assumptions
-- technical facts already known
-- what the project will not attempt to do
+Copy it into its own repository or workspace directory.
 
-The goal is to turn rough discussion into a usable project idea, not to begin
-execution prematurely.
+## 2. Open the copied project in your IDE
 
-## 2. Author `01_GENESIS/IDEA.md`
+Open the new project root so the workspace-local `AGENTS.md` and prompt files
+are active in that project.
 
-Write the selected project idea into `01_GENESIS/IDEA.md`.
+## 3. Write the project idea
 
-This is the primary ideation artifact used to begin bootstrap.
+Write the project idea in:
 
-A stronger `IDEA.md` usually reduces roadmap revisions later.
+[`01_GENESIS/IDEA.md`](https://github.com/prophetadmin/MetaDictum/blob/main/template/project/01_GENESIS/IDEA.md)
 
-## 3. Run `/seed` (Manual Bootstrap Path)
+Keep it concrete. Define what you are building, who it is for, major
+constraints, and obvious non-goals.
 
-Run `/seed` to transform `01_GENESIS/IDEA.md` into
-`01_GENESIS/PROJECT_SEED.md`.
+## 4. Run `/bootstrap`
 
-This step converts the idea artifact into a more structured seed suitable for
-roadmap generation.
+Run:
 
-## 4. Complete Bootstrap
+`/bootstrap`
 
-Recommended for fresh or reset workspaces: run `/bootstrap` once to execute the
-full canonical bootstrap chain in order.
+This is the canonical bootstrap entrypoint for a fresh or reset workspace.
 
-`/bootstrap` runs:
+It must execute this chain in order:
 
-- `/seed`
-- `/derive_requirements`
-- `/realize_components`
-- `/create_map_v2`
+1. `/seed`
+2. `/derive_requirements`
+3. `/realize_components`
+4. `/create_map_v2`
+5. `/validate_map_v2`
 
-This emits:
+Bootstrap is complete when these generated outputs exist:
 
 - `01_GENESIS/PROJECT_SEED.md`
 - `01_GENESIS/REQUIREMENTS_LEDGER.md`
 - `01_GENESIS/COMPONENT_REALIZATION_MAP.md`
 - `03_LEVITICUS/PROJECT_ROADMAP_v1.md`
 
-If not using `/bootstrap`, continue the manual chain in this order:
+## 5. Enter runtime correctly
 
-- `/derive_requirements`
-- `/realize_components`
-- `/create_map_v2`
+Once a generated roadmap exists, the workspace is in Execution Mode.
 
-## 5. Run `/status_sync`
+Start runtime by running:
 
-Run `/status_sync` to initialize and normalize
-`03_LEVITICUS/STATE_SUMMARY.md`.
+`/status_sync`
 
-This establishes the canonical execution state before work begins.
+This emits the canonical phase-state summary into:
 
-## 6. Continue with `/resume_phase`
+`03_LEVITICUS/STATE_SUMMARY.md`
 
-Use `/resume_phase` as the practical default for deterministic execution. It
-handles repeated `/resume` steps for the active phase and triggers
-`/record_phase_completion` when the next unmet criterion is the canonical phase
-receipt criterion.
+## 6. Execute the active phase
 
-Use `/resume` instead when you want to advance the project one deterministic
-objective at a time.
+Run:
 
-When running `/resume` manually, use `/record_phase_completion` once all
-non-receipt exit criteria for the active phase are directly proven.
+`/resume_phase`
 
-## Notes
+`/resume_phase` repeatedly runs `/resume` for the current Active Phase. When
+the next unmet criterion is the canonical phase receipt criterion, it runs
+`/record_phase_completion` before continuing. After the phase loop completes,
+it runs `/status_sync` exactly once.
 
-- MetaDictum can run with incomplete inputs, but stronger inputs usually
-  produce better roadmaps.
-- If important project facts are missing at the start, expect more roadmap
-  revisions and clarification work later.
-- Optional commands such as `/summarize_session` and `/extract_canon` are not
-  required for normal execution.
+Use `/resume` directly only when you intentionally want single-step
+deterministic advancement instead of phase-level continuation.
+
+Use `/record_phase_completion` directly only when all non-receipt Exit
+Criteria for the active phase are already directly proven and the next unmet
+criterion is the canonical phase receipt.
+
+## Runtime Loop
+
+The normal operating pattern is:
+
+1. `/status_sync`
+2. `/resume_phase`
+3. repeat for the next session or next phase
+
+## Read Next
+
+- [docs/framework/lifecycle.md](https://github.com/prophetadmin/MetaDictum/blob/main/docs/framework/lifecycle.md)
+- [docs/framework/philosophy.md](https://github.com/prophetadmin/MetaDictum/blob/main/docs/framework/philosophy.md)

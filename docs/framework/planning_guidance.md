@@ -1,68 +1,56 @@
 # MetaDictum Planning Guidance
 
-This document is human guidance, not an execution contract.
+This document is advisory guidance, not an execution contract.
 
-MetaDictum can run with weak inputs, but weak inputs usually produce weaker
-roadmaps, more revisions, and more roadmap drift.
+MetaDictum can bootstrap from incomplete inputs, but planning quality improves
+when the project is already defined well enough to execute rather than still
+being discovered.
 
-## Front-Load Real Context
+## What To Front-Load
 
-If a project depends on real technical constraints or environment details, that
-context should be supplied before roadmap generation whenever possible.
+Put real project facts in place before roadmap generation whenever possible.
 
-Useful front-loaded inputs may include:
+That usually includes:
 
 - runtime and platform assumptions
-- ports and endpoints
-- schema details
-- storage locations
-- service addresses
-- model identities
-- collection names
-- hardware constraints
-- external system dependencies
+- external dependencies and system boundaries
+- storage, schema, or data-shape facts
+- service addresses, ports, and integration details
+- hardware or environment constraints
+- model identities or other fixed technical dependencies
 
-The goal is not to burden the user with paperwork. The goal is to avoid using
-the roadmap as a scratch pad for discovering facts that could have been stated
-up front.
+The point is not paperwork. The point is to avoid using the roadmap as a place
+to discover basic project facts that were already knowable.
 
-## Strong Ideas Produce Better Seeds
+## What `IDEA.md` Should Cover
 
-`IDEA.md` quality matters.
+[01_GENESIS/IDEA.md](https://github.com/prophetadmin/MetaDictum/blob/main/template/project/01_GENESIS/IDEA.md) does not need to be exhaustive, but it should be concrete enough to support clean bootstrap.
 
-A strong idea artifact usually states:
+A good `IDEA.md` usually states:
 
-- the problem or opportunity
+- the problem being solved
 - the intended user or audience
 - the desired outcome
-- relevant constraints
-- non-goals
+- the main constraints
+- the obvious non-goals
 
-MetaDictum does not require perfect ideation to function. It will still execute
-against incomplete inputs. But incomplete inputs often lead to frequent roadmap
-revision and just-in-time clarification work.
-
-## Garbage In -> Roadmap Drift
-
-This is an advisory principle, not a contract rule.
-
-If important facts are missing at roadmap-generation time, the roadmap will
-still be generated, but it is more likely to absorb discovery work, correction
-work, and replanning work that should have happened earlier.
-
-That does not make the framework nondeterministic. It makes the project inputs
-less prepared.
-
-In practice:
-
-- better inputs reduce roadmap churn
-- stronger up-front context reduces versioning pressure
-- weak inputs increase the chance that the roadmap becomes a correction surface
-  instead of an execution surface
+If those basics are missing, bootstrap can still proceed, but the planning
+artifacts will usually need more correction later.
 
 ## Practical Standard
 
-Use the roadmap to execute an adequately defined project whenever possible.
+Use the roadmap to execute an adequately defined project.
 
-Do not rely on the roadmap itself to discover the project unless you accept the
-cost of more revisions and drift correction later.
+Do not rely on the roadmap to discover the project unless you are willing to
+pay for that in revisions, clarification work, and roadmap churn.
+
+## Tradeoff
+
+Weak inputs do not make MetaDictum nondeterministic. They make the project less
+prepared at planning time.
+
+In practice:
+
+- stronger inputs reduce roadmap revisions
+- better technical context reduces drift and rework
+- weaker inputs push discovery and correction into the planning surface
